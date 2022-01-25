@@ -1,20 +1,12 @@
 import React from 'react';
-import { Button, Col, Container, Stack, Row } from 'react-bootstrap';
+import { Col, Container, Stack, Row } from 'react-bootstrap';
 
-import firebaseApp from '../FireCred';
-import { getFirestore, updateDoc, doc } from 'firebase/firestore';
+import EliminarTarea from '../EliminarTarea';
 
-const firestore = getFirestore(firebaseApp);
+
 
 function ListadoTarea({ arrayTodos, correoUsuario, setArrayTodos }) {
 
-    async function eliminarTarea(idTarea) {
-        const newArrayTodos = arrayTodos.filter((objetoTarea) => objetoTarea.id !== idTarea);
-        const docRef = doc(firestore, `users/${correoUsuario}`);
-        updateDoc(docRef, { todos: [...newArrayTodos] });
-        //Actualizar state
-        setArrayTodos(newArrayTodos);
-    }
     return (
         <Container>
             <Stack>
@@ -26,7 +18,12 @@ function ListadoTarea({ arrayTodos, correoUsuario, setArrayTodos }) {
                                     {objetoTarea.descripcion}
                                 </Col>
                                 <Col>
-                                    <Button onClick={() => eliminarTarea(objetoTarea.id)}>Eliminar Tarea</Button>
+                                    <EliminarTarea
+                                        arrayTodos={arrayTodos}
+                                        correoUsuario={correoUsuario}
+                                        setArrayTodos={setArrayTodos}
+                                        objetoTarea={objetoTarea}
+                                    />
                                 </Col>
                             </Row>
                             <hr />

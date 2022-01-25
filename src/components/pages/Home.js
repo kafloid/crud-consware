@@ -7,7 +7,7 @@ import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 //componentes
 import AgregatTarea from '../AgregarTarea';
-import ListadoTarea from '../ListadoTarea';
+import ListadoTarea from './ListadoTarea';
 
 //constantes firebase
 const auth = getAuth(firebaseApp);
